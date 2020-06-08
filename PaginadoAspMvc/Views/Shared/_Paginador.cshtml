@@ -1,0 +1,25 @@
+﻿@model PaginadoAspMvc.Models.BaseModelo
+
+@{ 
+    var CantidadPaginas = Math.Ceiling((double)Model.TotalDeRegistros / Model.ResgistrosPorPagina);
+}
+
+<ul class="pagination">
+    @if(Model.PaginaActual == 1)
+    {
+        <li class="disabled">@Html.ActionLink("Anterior",null,new { pagina = 1})</li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Anterior",null,new { pagina = Model.PaginaActual -1})</li>
+    }
+
+    @if(Model.PaginaActual == CantidadPaginas)
+    {
+        <li class="disabled">@Html.ActionLink("Siguiente",null,new { pagina = CantidadPaginas })</li>
+    }else
+    {
+        <li>@Html.ActionLink("Siguiente",null, new {pagina = Model.PaginaActual + 1 })</li>
+    }
+
+</ul>
